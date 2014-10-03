@@ -134,10 +134,10 @@ var $Promise = function Promise(resolver) {
       throw MakeTypeError('resolver_not_a_function', [resolver]);
     var promise = PromiseInit(this);
     try {
-      resolver(function(x) { PromiseResolve(promise, x) },
-               function(r) { PromiseReject(promise, r) });
+        resolver(function(x) { PromiseResolve(promise, x) },
+                 function(r) { PromiseReject(promise, r) });
     } catch (e) {
-      PromiseReject(promise, e);
+        PromiseReject(promise, e);
     }
 }
 
@@ -152,7 +152,7 @@ function PromiseSet(promise, status, value, onResolve, onReject) {
 }
 
 function PromiseInit(promise) {
-    return PromiseSet(promise, 0, UNDEFINED, new InternalArray, new InternalArray)
+    return PromiseSet(promise, 0, UNDEFINED, new InternalArray, new InternalArray);
 }
 
 function PromiseDone(promise, status, value, promiseQueue) {
@@ -193,7 +193,7 @@ function PromiseHandle(value, handler, deferred) {
         else
             deferred.resolve(result);
     } catch (exception) {
-        try { deferred.reject(exception); } catch (e) { }
+        try { deferred.reject(exception) } catch (e) { }
     }
 }
 
@@ -219,15 +219,15 @@ IsPromise = function IsPromise(x) {
 };
 
 PromiseCreate = function PromiseCreate() {
-    return new $Promise(PromiseNopResolver)
+    return new $Promise(PromiseNopResolver);
 };
 
 PromiseResolve = function PromiseResolve(promise, x) {
-    PromiseDone(promise, +1, x, promiseOnResolve)
+    PromiseDone(promise, +1, x, promiseOnResolve);
 };
 
 PromiseReject = function PromiseReject(promise, r) {
-    PromiseDone(promise, -1, r, promiseOnReject)
+    PromiseDone(promise, -1, r, promiseOnReject);
 };
 
 // Convenience.
@@ -350,7 +350,7 @@ function PromiseAll(values) {
             }
         }
     } catch (e) {
-        deferred.reject(e)
+        deferred.reject(e);
     }
     return deferred.promise;
 }
@@ -368,7 +368,7 @@ function PromiseOne(values) {
                 function(r) { deferred.reject(r) });
         }
     } catch (e) {
-        deferred.reject(e)
+        deferred.reject(e);
     }
     return deferred.promise;
 }
