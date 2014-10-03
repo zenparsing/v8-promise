@@ -51,18 +51,16 @@ var runLater = (function() {
 })();
 
 var EnqueueMicrotask = (function() {
-
     var queue = null;
 
     function flush() {
         var q = queue;
         queue = null;
-
         for (var i = 0; i < q.length; ++i)
             q[i]();
     }
 
-    return function Promise_EnqueueMicrotask(fn) {
+    return function PromiseEnqueueMicrotask(fn) {
         // fn must not throw
         if (!queue) {
             queue = [];
@@ -70,7 +68,6 @@ var EnqueueMicrotask = (function() {
         }
         queue.push(fn);
     };
-
 })();
 
 // Mock V8 internal functions and vars
@@ -85,14 +82,13 @@ function MakeTypeError(msg) { return new TypeError(msg); }
 
 var _defineProperty = Object.defineProperty;
 
-// In IE8 this doesn't work
 if (_defineProperty) {
+    // In IE8 Object.defineProperty only works on DOM nodes
     try { _defineProperty({}, "-", { value: 0 }); }
     catch (x) { _defineProperty = void 0; }
 }
 
 function AddNamedProperty(target, name, value) {
-
     if (!_defineProperty) {
         target[name] = value;
         return;
@@ -128,7 +124,7 @@ var promiseStatus = "Promise#status";
 var promiseValue = "Promise#value";
 var promiseOnResolve = "Promise#onResolve";
 var promiseOnReject = "Promise#onReject";
-var promiseRaw = "Promise#raw";
+var promiseRaw = {};
 var promiseHasHandler = "Promise#hasHandler";
 var lastMicrotaskId = 0;
 
