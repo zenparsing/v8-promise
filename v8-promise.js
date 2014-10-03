@@ -83,14 +83,22 @@ function HAS_DEFINED_PRIVATE(obj, prop) { return prop in obj; }
 function IS_UNDEFINED(x) { return x === void 0; }
 function MakeTypeError(msg) { return new TypeError(msg); }
 
+var _defineProperty = Object.defineProperty;
+
+// In IE8 this doesn't work
+if (_defineProperty) {
+    try { _defineProperty({}, "-", { value: 0 }); }
+    catch (x) { _defineProperty = void 0; }
+}
+
 function AddNamedProperty(target, name, value) {
 
-    if (!Object.defineProperty) {
+    if (!_defineProperty) {
         target[name] = value;
         return;
     }
 
-    Object.defineProperty(target, name, {
+    _defineProperty(target, name, {
         configurable: true,
         writable: true,
         enumerable: false,
