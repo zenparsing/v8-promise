@@ -1,0 +1,20 @@
+{
+  "name": "v8-promise",
+  "version": "1.0.2",
+  "description": "A Promise polyfill adapted from V8",
+  "main": "v8-promise.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zenparsing/v8-promise.git"
+  },
+  "keywords": [
+    "promise",
+    "polyfill"
+  ],
+  "author": "zenparsing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zenparsing/v8-promise/issues"
+  },
+  "homepage": "https://github.com/zenparsing/v8-promise"
+}

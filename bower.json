@@ -1,7 +1,7 @@
 {
   "name": "v8-promise",
   "main": "v8-promise.js",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "authors": [
     "zenparsing <zenparsing@gmail.com>"
   ],
