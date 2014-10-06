@@ -102,7 +102,7 @@ function InstallFunctions(target, attr, list) {
         AddNamedProperty(target, list[i], list[i + 1]);
 }
 
-var IsArray = Array.isArray || (function(obj) {
+var IsArray = Array.isArray || (function() {
     var str = Object.prototype.toString;
     return function(obj) { return str.call(obj) === "[object Array]" };
 })();
