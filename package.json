@@ -1,6 +1,6 @@
 {
   "name": "v8-promise",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Promise polyfill adapted from V8",
   "main": "v8-promise.js",
   "repository": {
